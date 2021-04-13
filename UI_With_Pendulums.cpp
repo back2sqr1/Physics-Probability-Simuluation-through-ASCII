@@ -246,7 +246,6 @@ void pendulum_with_trace()
 int main()
 {
 	int a;
-	cout<<"1 or 2????"<<endl;
 	cin>>a;
 	if(a==1)
 	{
