@@ -55,8 +55,8 @@ class Walker{
 			pY[LENGTH-1]=y;
 		}
 };
-int main(){
-	
+void RandomWalker(int L, int R, int D)
+{
 	for(int i=0;i<HEIGHT/dH-1;i++)	platno[i][WIDTH/dW]='\n';
 	platno[HEIGHT/dH-1][WIDTH/dW]='\0';
 	for(int i=0;i<HEIGHT/dH;i++)
@@ -68,26 +68,36 @@ int main(){
 	}
 	Walker w;
    srand (time(NULL));
-   
    while(true)
    {
    		gotoxy(0,0);
-   		int dir=rand()%2, dis=rand()%2;
-   		
-   		if(dis==0)
-   		dis=-1;
+   		int dir=rand()%100+1;
+   		if(dir<=L)
+   		w.walk(-1, 0);
+   		else if(dir<=R)
+   		w.walk(1,0);
+   		else if(dir<=D)
+   		w.walk(0,1);
    		else
-   		dis=1;
-   		
-   		
-   		if(dir==0)
-   		w.walk(dis, 0);
-   		else
-   		w.walk(0,dis);
+   		w.walk(0,-1);
    		
    		w.display();
    		puts(platno[0]);
-   		cout<<w.x<<' '<<w.y<<endl;
+   		cout<<w.x<<' '<<w.y<<' '<<dir<<' '<<endl;
    }
+}
+int main(){
+	cout<<"What probabilities do you want? (Make sure they are less than 100 and add up to 100)"<<endl;
+	int L, R, D, U;
+	printf("Left: ");
+	scanf("%i", &L);
+	printf("Right: ");
+	scanf("%i", &R);
+	printf("Down: ");
+	scanf("%i", &D);
+	printf("Up: ");
+	scanf("%i", &U);
+	R+=L; D+=R; 
+	RandomWalker(L, R, D);
 }
 
