@@ -1,2 +1,2 @@
 # ASCII
-ASCII Art in C++ to learn some tricks and stuff
+Simulating the science and mathematics of physics and probability within code.
