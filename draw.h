@@ -1,7 +1,7 @@
 #include <iostream>
 #include <windows.h>
 
-constexpr int WIDTH = 1000,HEIGHT = 600;
+constexpr int WIDTH = 1300,HEIGHT = 720;
 constexpr int dW=8,dH=16;
 
 void gotoxy ( short x, short y )
@@ -10,6 +10,10 @@ COORD coord = {x, y};
 SetConsoleCursorPosition ( GetStdHandle ( STD_OUTPUT_HANDLE ), coord );
 }
 
+void drawCircle(char platno[HEIGHT/dH][WIDTH/dW+1], int x, int y, int l, int w)
+{
+	
+}
 void plotLineLow(char platno[HEIGHT/dH][WIDTH/dW+1],int x0,int y0,int x1,int y1,char c);
 void plotLineHigh(char platno[HEIGHT/dH][WIDTH/dW+1],int x0,int y0,int x1,int y1,char c);
 void drawPoint(char platno[HEIGHT/dH][WIDTH/dW+1],int A,int B,char c);
