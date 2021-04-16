@@ -1,8 +1,9 @@
 #include <iostream>
 #include <windows.h>
-
+#include <cmath>
 constexpr int WIDTH = 1300,HEIGHT = 720;
 constexpr int dW=8,dH=16;
+constexpr double pi= 2*acos(0.0);
 
 void gotoxy ( short x, short y )
 {
@@ -10,21 +11,37 @@ COORD coord = {x, y};
 SetConsoleCursorPosition ( GetStdHandle ( STD_OUTPUT_HANDLE ), coord );
 }
 
-void drawCircle(char platno[HEIGHT/dH][WIDTH/dW+1], int x, int y, int l, int w)
-{
-	
-}
+
 void plotLineLow(char platno[HEIGHT/dH][WIDTH/dW+1],int x0,int y0,int x1,int y1,char c);
 void plotLineHigh(char platno[HEIGHT/dH][WIDTH/dW+1],int x0,int y0,int x1,int y1,char c);
 void drawPoint(char platno[HEIGHT/dH][WIDTH/dW+1],int A,int B,char c);
 void drawLine(char platno[HEIGHT/dH][WIDTH/dW+1],int A,int B,int C,int D,char c);
+void drawCircle(char platno[HEIGHT/dH][WIDTH/dW+1], int h, int k, int r);
 
 void drawPoint(char platno[HEIGHT/dH][WIDTH/dW+1],int A,int B,char c)
 {
 	if(A<0||B<0||A>=WIDTH/dW||B>=HEIGHT/dH)	return;
 	platno[B][A]=c;
 }
-
+void drawCircle(char platno[HEIGHT/dH][WIDTH/dW+1], int h, int k, int r)
+{
+	double step= 2*pi/20;
+	drawPoint(platno, h, k, '*');
+	int pX=h+r*cos(0), pY=k-r*sin(0);
+	int a=h+r*cos(0), b= k+r*sin(0);
+	for(double theta=step; theta<2*pi; theta+=step)
+	{
+		gotoxy(0,0);
+		int x= h+r*cos(theta);
+		int y=k-r*sin(theta);
+		drawLine(platno, pX, pY, x, y, 'X');
+		drawLine(platno, h, k, x, y, 'X');
+		pX=x;
+		pY=y;
+		puts(platno[0]);
+	///	cout<<pX<<' '<<pY<<' '<<x<<' '<<y<<endl;
+	}
+}
 void drawLine(char platno[HEIGHT/dH][WIDTH/dW+1],int A,int B,int C,int D,char c)
 {
 	//sorting

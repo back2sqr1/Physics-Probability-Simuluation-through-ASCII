@@ -23,8 +23,10 @@ private:
 };
 constexpr int LENGTH=10;
 char platno[HEIGHT/dH][WIDTH/dW+1];
-constexpr double pi= 2*acos(0.0);
 int main(){
+	cout<<"You ready?"<<endl;
+	string s;
+	cin>>s;
 	for(int i=0;i<HEIGHT/dH-1;i++)	platno[i][WIDTH/dW]='\n';
 	platno[HEIGHT/dH-1][WIDTH/dW]='\0';
 	for(int i=0;i<HEIGHT/dH;i++)
@@ -45,15 +47,15 @@ int main(){
 		int x= h+r*cos(theta);
 		int y=k-r*sin(theta);
 		drawLine(platno, pX, pY, x, y, 'X');
-		//drawLine(platno, h, k, x, y, 'X');
+		drawLine(platno, h, k, x, y, 'X');
 		pX=x;
 		pY=y;
 		puts(platno[0]);
-		cout<<pX<<' '<<pY<<' '<<x<<' '<<y<<endl;
+	///	cout<<pX<<' '<<pY<<' '<<x<<' '<<y<<endl;
 	}
 	gotoxy(0,0);
 	drawLine(platno, a, b, pX, pY, 'X');
-	//drawLine(platno, h, k, a, b, 'X');
+	drawLine(platno, h, k, a, b, 'X');
 	puts(platno[0]);
 	
 }
